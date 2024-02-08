@@ -17,7 +17,10 @@ Route::middleware(['auth'])
         //Siamo nel gruppo quindi:
         // - il percorso "/" diventa "admin/"
         // - il nome della rotta ->name("dashboard") diventa ->name("admin.dashboard")
-        Route::get('/', [EventController::class, 'index'])->name('dashboard');
+          Route::get('/', function () {
+            return view("admin.dashboard");
+        })->name('dashboard');
+
 
         // Admin Post CRUD
         Route::resource('posts',EventController::class);
