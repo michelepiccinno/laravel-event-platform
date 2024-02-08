@@ -2,17 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController; //<---- Import del controller precedentemente creato!
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+use App\Http\Controllers\Admin\EventController;
+/* ... */
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,7 +17,10 @@ Route::middleware(['auth'])
         //Siamo nel gruppo quindi:
         // - il percorso "/" diventa "admin/"
         // - il nome della rotta ->name("dashboard") diventa ->name("admin.dashboard")
-        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/', [EventController::class, 'index'])->name('dashboard');
+
+        // Admin Post CRUD
+        Route::resource('posts',EventController::class);
     });
 
 require __DIR__ . '/auth.php';
