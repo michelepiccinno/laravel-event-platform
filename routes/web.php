@@ -23,7 +23,7 @@ Route::middleware(['auth'])
 
 
         // Admin Post CRUD
-        Route::resource('posts',EventController::class);
+        Route::resource('events',EventController::class);
     });
 
 require __DIR__ . '/auth.php';

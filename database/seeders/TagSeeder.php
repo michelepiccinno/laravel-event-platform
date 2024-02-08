@@ -16,5 +16,6 @@ class TagSeeder extends Seeder
     {
         $newTag = new Tag();
         $newTag->name = "musica";
+        $newTag->save();
 }
 }

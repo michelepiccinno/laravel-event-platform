@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-fluid mt-4">
         <div class="row justify-content-center">
-            <h2>Nuovo post</h2>
+            <h2>Nuovo Evento</h2>
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -15,7 +15,7 @@
             @endif
         </div>
         <div class="row">
-            <form action="{{ route('admin.posts.store') }}" method="POST">
+            <form action="{{ route('admin.events.store') }}" method="POST">
                 @csrf
                 {{-- name description --}}
                 <div class="mb-3">
