@@ -34,3 +34,4 @@ Route::get('/prova', function() {
 
 //spostiamo parte di codice nel controler (attenzione: Api/EventController)
 Route::get("/events", [ApiEventController::class, "index"]);
+Route::get("/events/{id}", [EventController::class, "show"]);

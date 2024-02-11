@@ -13,7 +13,7 @@ class EventController extends Controller
         $events = Event::all();
         $data = [
             "success" => "true",
-            "results" => $events
+            "payload" => $events
         ];
         return response()->json($data);
     }
