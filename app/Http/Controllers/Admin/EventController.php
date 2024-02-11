@@ -38,16 +38,10 @@ class EventController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(Event $event)
     {
-        $event = Event::with("user")->find($id);
-
-        return response()->json([
-            "success" => $event ? true : false,
-            "payload" => $event ? $event : "Nessun evento corrispondente all'id"
-        ]);
+       //
     }
-
     /**
      * Show the form for editing the specified resource.
      */
