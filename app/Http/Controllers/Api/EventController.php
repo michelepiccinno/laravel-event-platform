@@ -13,9 +13,10 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::all();
+        $tags = Tag::all();
         $data = [
             "success" => "true",
-            "payload" => $events,
+            "payload" => $events, $tags
 
         ];
         return response()->json($data);
