@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\Tag;
+use PHPUnit\TextUI\XmlConfiguration\CodeCoverage\Report\Php;
 
 class EventController extends Controller
 {
@@ -13,14 +15,15 @@ class EventController extends Controller
         $events = Event::all();
         $data = [
             "success" => "true",
-            "payload" => $events
+            "payload" => $events,
+
         ];
         return response()->json($data);
     }
-    
+
     public function show($id)
     {
-        $event = Event::with("user")->find($id);
+        $event = Event::with("user",'tags')->find($id);
 
         return response()->json([
             "success" => $event ? true : false,
