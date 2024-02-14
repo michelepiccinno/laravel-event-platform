@@ -27,6 +27,8 @@ class EventSeeder extends Seeder
             $newEvent->user_id = $faker->randomElement($this->getUtentiID());
 
             $newEvent->save();
+
+            $newEvent->tags()->attach([1, 2, 3, 4]);
         }
     }
 

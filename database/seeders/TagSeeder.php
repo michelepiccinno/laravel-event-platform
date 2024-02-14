@@ -14,8 +14,26 @@ class TagSeeder extends Seeder
      */
     public function run(): void
     {
-        $newTag = new Tag();
-        $newTag->name = "musica";
-        $newTag->save();
-}
+        $tags = [
+            [
+                'name' => 'musica'
+            ],
+            [
+                'name' => 'tecnologia'
+            ],
+            [
+                'name' => 'cucina'
+            ],
+            [
+                'name' => 'arredamento'
+            ]
+
+        ];
+
+        foreach ($tags as $tag) {
+            $newTag = new Tag;
+            $newTag->fill($tag);
+            $newTag->save();
+        }
+    }
 }
