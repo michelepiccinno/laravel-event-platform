@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-
     <div class="content">
         <div class="container">
             <div class="row row-cols-1 row-cols-md-3 g-4 py-4">
@@ -22,6 +21,7 @@
                                     <span>Non ci sono tag collegati</span>
                                 @endif
                                 <p>Utente: {{ $event->user['name'] }}</p>
+                                <a href="{{ route('admin.events.show', $event->id) }}" class="btn btn-primary">DETTAGLI</a>
                             </div>
                         </div>
                     </div>

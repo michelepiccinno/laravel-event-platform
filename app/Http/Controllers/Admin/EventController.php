@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 
 use App\Models\Event;
+use App\Models\Tag;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 
@@ -23,8 +25,10 @@ class EventController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        //
+    { {
+            $tags = Tag::all();
+            return view("admin.events.create", compact("tags"));
+        }
     }
 
     /**
@@ -32,7 +36,15 @@ class EventController extends Controller
      */
     public function store(StoreEventRequest $request)
     {
-        //
+        $validati = $request->validated();
+        $newEvent = new Event();
+        $newEvent->fill($validati);
+        $newEvent->save();
+        if ($request->tags) {
+            $newEvent->tags()->attach($request->tags);
+        }
+        // return redirect()->route("admin.Events.show", $newEvent->id);
+        return redirect()->route("admin.events.index");
     }
 
     /**
@@ -40,7 +52,7 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-       //
+        return view("admin.events.show", compact("event"));
     }
     /**
      * Show the form for editing the specified resource.
