@@ -20,7 +20,7 @@
                                 @else
                                     <span>Non ci sono tag collegati</span>
                                 @endif
-                                <p>Utente: {{ $event->user['name'] }}</p>
+                                 <p>Creato da utente: {{ $event->user['name'] }}</p>
                                 <a href="{{ route('admin.events.show', $event->id) }}" class="btn btn-primary">DETTAGLI</a>
                             </div>
                         </div>

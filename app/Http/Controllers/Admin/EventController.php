@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Event;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 
@@ -37,6 +38,7 @@ class EventController extends Controller
     public function store(StoreEventRequest $request)
     {
         $validati = $request->validated();
+        $validati["user_id"] = Auth::id();
         $newEvent = new Event();
         $newEvent->fill($validati);
         $newEvent->save();

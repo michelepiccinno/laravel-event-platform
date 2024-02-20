@@ -13,7 +13,8 @@ class Event extends Model
         "name",
         "date", 
         "available_tickets",
-        "tag_id"
+        "tag_id",
+        "user_id"
     ];
 
     public function user()
