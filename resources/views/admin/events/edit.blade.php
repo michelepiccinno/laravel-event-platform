@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
     <div class="container">
@@ -44,7 +44,7 @@
                     <select class="form-select" name="tags[]" id="tags" multiple>
                         @foreach ($tags as $tag)
                             <option value="{{ $tag->id }}" {{ $event->tags->contains($tag->id) ? 'selected' : '' }}>
-                                {{ $tagjh->name }}
+                                {{ $tag->name }}
                             </option>
                         @endforeach
                     </select>

@@ -60,7 +60,8 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        return view("admin.events.edit", compact("event"));
+        $tags = Tag::all();
+        return view("admin.events.edit", compact("event", "tags"));
     }
 
     /**
@@ -68,10 +69,12 @@ class EventController extends Controller
      */
     public function update(UpdateEventRequest $request, Event $event)
     {
-        $data = $request->all();
-        $dati_validati = $this->validation($data);
-        $event->update($dati_validati);
-        return redirect()->route('events.show', $event->id);
+        $dati_validati = $request->validated();
+        $event->update($dati_validati);              //update con idati validati dalla request
+        if ($request->tags) {                        //per l'update dei tag sincronizzo la tabella pivot con i tags provenienti dalla request
+            $event->tags()->sync($request->tags);
+        }
+        return redirect()->route('admin.events.show', $event->id);
     }
 
     /**
