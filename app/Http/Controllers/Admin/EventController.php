@@ -17,8 +17,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::all();
-
+        $events = Event::where('user_id', auth()->user()->id)->get();
         return view("admin.events.index", compact("events"));
     }
 
@@ -61,7 +60,7 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        //
+        return view("admin.events.edit", compact("event"));
     }
 
     /**
@@ -69,7 +68,10 @@ class EventController extends Controller
      */
     public function update(UpdateEventRequest $request, Event $event)
     {
-        //
+        $data = $request->all();
+        $dati_validati = $this->validation($data);
+        $event->update($dati_validati);
+        return redirect()->route('events.show', $event->id);
     }
 
     /**

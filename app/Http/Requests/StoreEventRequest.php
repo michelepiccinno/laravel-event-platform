@@ -25,7 +25,6 @@ class StoreEventRequest extends FormRequest
             "name" => ["required", "min:5", "max:50"],
             "date" => ["required", "date"],
             "available_tickets" => ["required", "min:0", "max:5000"],
-
             "tags" => ["required", "exists:tags,id"],
             
         ];
